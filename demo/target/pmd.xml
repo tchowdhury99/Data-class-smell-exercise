@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.55.0" timestamp="2026-03-03T01:27:55.622">
+<file name="C:\Users\sweehoney\Datasmells\Data-class-smell-exercise\demo\src\main\java\uncc\datasmells\Customer.java">
+<violation beginline="3" endline="23" begincolumn="8" endcolumn="1" rule="DataClass" ruleset="Design" package="edu.uncc.se" class="Customer" externalInfoUrl="https://pmd.github.io/pmd-6.55.0/pmd_rules_java_design.html#dataclass" priority="3">
+The class 'Customer' is suspected to be a Data Class (WOC=0.000%, NOPA=0, NOAM=6, WMC=7)
+</violation>
+</file>
+<file name="C:\Users\sweehoney\Datasmells\Data-class-smell-exercise\demo\src\main\java\uncc\datasmells\Order.java">
+<violation beginline="5" endline="25" begincolumn="8" endcolumn="1" rule="DataClass" ruleset="Design" package="edu.uncc.se" class="Order" externalInfoUrl="https://pmd.github.io/pmd-6.55.0/pmd_rules_java_design.html#dataclass" priority="3">
+The class 'Order' is suspected to be a Data Class (WOC=0.000%, NOPA=0, NOAM=6, WMC=7)
+</violation>
+</file>
+<file name="C:\Users\sweehoney\Datasmells\Data-class-smell-exercise\demo\src\main\java\uncc\datasmells\Product.java">
+<violation beginline="3" endline="23" begincolumn="8" endcolumn="1" rule="DataClass" ruleset="Design" package="edu.uncc.se" class="Product" externalInfoUrl="https://pmd.github.io/pmd-6.55.0/pmd_rules_java_design.html#dataclass" priority="3">
+The class 'Product' is suspected to be a Data Class (WOC=0.000%, NOPA=0, NOAM=6, WMC=7)
+</violation>
+</file>
+</pmd>
