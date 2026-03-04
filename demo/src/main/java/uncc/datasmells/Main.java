@@ -1,4 +1,4 @@
-package edu.uncc.se;
+package uncc.datasmells;
 
 import java.util.Arrays;
 
@@ -13,11 +13,15 @@ public class Main {
 
         Order order = new Order("O1001", customer, Arrays.asList(p1, p2));
 
+        Invoice invoice = new Invoice("INV-01", order, 0.10, 50.0);
+
         OrderService service = new OrderService();
 
-        double total = service.calculateTotal(order);
         service.printOrderSummary(order);
 
-        System.out.println("Total: $" + total);
+        double total = service.calculateTotal(order);
+        System.out.println("Order Total: $" + total);
+
+        service.printInvoiceSummary(invoice);
     }
 }

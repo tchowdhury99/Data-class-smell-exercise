@@ -1,4 +1,4 @@
-package edu.uncc.se;
+package uncc.datasmells;
 
 public class Customer {
 

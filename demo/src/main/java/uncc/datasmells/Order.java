@@ -1,4 +1,4 @@
-package edu.uncc.se;
+package uncc.datasmells;
 
 import java.util.List;
 

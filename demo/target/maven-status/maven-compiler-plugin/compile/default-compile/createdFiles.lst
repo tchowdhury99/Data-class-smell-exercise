@@ -1,5 +1,6 @@
-edu\uncc\se\Main.class
-edu\uncc\se\Product.class
-edu\uncc\se\Order.class
-edu\uncc\se\Customer.class
-edu\uncc\se\OrderService.class
+uncc\datasmells\Main.class
+uncc\datasmells\OrderService.class
+uncc\datasmells\Product.class
+uncc\datasmells\Invoice.class
+uncc\datasmells\Order.class
+uncc\datasmells\Customer.class
