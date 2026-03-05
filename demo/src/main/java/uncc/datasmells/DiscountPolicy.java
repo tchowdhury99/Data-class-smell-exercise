@@ -1,5 +1,5 @@
 package uncc.datasmells;
 
 public interface DiscountPolicy {
-    double discountAmount(double baseTotal);
+    double discountOn(double baseAmount);
 }

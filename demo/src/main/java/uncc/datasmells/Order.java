@@ -1,5 +1,6 @@
 package uncc.datasmells;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -9,52 +10,72 @@ public class Order {
     List<Product> products;
 
     public Order(String orderId, Customer customer, List<Product> products) {
-        Validation.requireNonBlank(orderId, "order id");
-        Validation.requireNonNull(customer, "customer");
-        Validation.requireNonNull(products, "products");
-
+        Validation.notBlank(orderId, "order id");
+        Validation.notNull(customer, "customer");
+        Validation.notNull(products, "products");
         this.orderId = orderId;
         this.customer = customer;
-        this.products = products;
+        this.products = new ArrayList<>(products);
+        validateNoNullProducts();
     }
 
-    // Behavior: move “business meaning” into the object
+
     public double total() {
         double sum = 0.0;
         for (Product p : products) {
-            if (p == null) {
-                throw new ValidationException("product must not be null");
-            }
-            sum += p.getPrice();
+            sum += p.unitPrice();
         }
         return sum;
     }
 
-    // Behavior: keep EXACT same output formatting as original printOrderSummary :contentReference[oaicite:8]{index=8}
+    public int productCount() {
+        return products.size();
+    }
+
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
+    public void addProduct(Product product) {
+        Validation.notNull(product, "product");
+        products.add(product);
+    }
+
+    public boolean removeProductById(String productId) {
+        Validation.notBlank(productId, "product id");
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).matchesId(productId)) {
+                products.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsFreeItem() {
+        for (Product p : products) {
+            if (p.isFree()) return true;
+        }
+        return false;
+    }
+
+    public void transferTo(Customer newCustomer) {
+        Validation.notNull(newCustomer, "customer");
+        this.customer = newCustomer;
+    }
+
+ 
     public void printSummary() {
         System.out.println("Order ID: " + orderId);
-        System.out.println("Customer: " + customer.getName());
+        System.out.println("Customer: " + customer.displayName());
         for (Product p : products) {
             System.out.println(p.receiptLine());
         }
     }
 
-    // Accessors kept
-    public String getOrderId() { return orderId; }
-    public void setOrderId(String orderId) {
-        Validation.requireNonBlank(orderId, "order id");
-        this.orderId = orderId;
-    }
-
-    public Customer getCustomer() { return customer; }
-    public void setCustomer(Customer customer) {
-        Validation.requireNonNull(customer, "customer");
-        this.customer = customer;
-    }
-
-    public List<Product> getProducts() { return products; }
-    public void setProducts(List<Product> products) {
-        Validation.requireNonNull(products, "products");
-        this.products = products;
+    void validateNoNullProducts() {
+        for (Product p : products) {
+            if (p == null) throw new ValidationException("product must not be null");
+        }
     }
 }

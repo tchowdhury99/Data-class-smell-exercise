@@ -7,39 +7,38 @@ public class Product {
     double price;
 
     public Product(String id, String name, double price) {
-        Validation.requireNonBlank(id, "product id");
-        Validation.requireNonBlank(name, "product name");
-        Validation.requireNonNegative(price, "product price");
-
+        Validation.notBlank(id, "product id");
+        Validation.notBlank(name, "product name");
+        Validation.nonNegative(price, "product price");
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    // Behavior: exactly matches print format in OrderService today :contentReference[oaicite:6]{index=6}
+  
     public String receiptLine() {
         return "- " + name + " $" + price;
+    }
+
+    public double unitPrice() {
+        return price;
     }
 
     public boolean isFree() {
         return price == 0.0;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) {
-        Validation.requireNonBlank(id, "product id");
-        this.id = id;
+    public void renameTo(String newName) {
+        Validation.notBlank(newName, "product name");
+        this.name = newName;
     }
 
-    public String getName() { return name; }
-    public void setName(String name) {
-        Validation.requireNonBlank(name, "product name");
-        this.name = name;
+    public void changePriceTo(double newPrice) {
+        Validation.nonNegative(newPrice, "product price");
+        this.price = newPrice;
     }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) {
-        Validation.requireNonNegative(price, "product price");
-        this.price = price;
+    public boolean matchesId(String otherId) {
+        return id != null && id.equals(otherId);
     }
 }

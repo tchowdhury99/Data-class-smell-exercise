@@ -7,41 +7,38 @@ public class Customer {
     String email;
 
     public Customer(String id, String name, String email) {
-        Validation.requireNonBlank(id, "customer id");
-        Validation.requireNonBlank(name, "customer name");
-        Validation.requireNonBlank(email, "customer email");
-
+        Validation.notBlank(id, "customer id");
+        Validation.notBlank(name, "customer name");
+        Validation.notBlank(email, "customer email");
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    // Behavior
+    // Behavior-rich (no getters/setters needed)
     public String displayName() {
-        // Doesn’t affect existing output (Main prints only getName)
         return name;
     }
 
-    public boolean hasEmail() {
+    public String contactLabel() {
+        return name + " <" + email + ">";
+    }
+
+    public boolean canBeContacted() {
         return email != null && !email.trim().isEmpty();
     }
 
-    // Accessors (kept so Main and existing code still compile)
-    public String getId() { return id; }
-    public void setId(String id) {
-        Validation.requireNonBlank(id, "customer id");
-        this.id = id;
+    public void renameTo(String newName) {
+        Validation.notBlank(newName, "customer name");
+        this.name = newName;
     }
 
-    public String getName() { return name; }
-    public void setName(String name) {
-        Validation.requireNonBlank(name, "customer name");
-        this.name = name;
+    public void changeEmailTo(String newEmail) {
+        Validation.notBlank(newEmail, "customer email");
+        this.email = newEmail;
     }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) {
-        Validation.requireNonBlank(email, "customer email");
-        this.email = email;
+    public boolean matchesId(String otherId) {
+        return id != null && id.equals(otherId);
     }
 }
